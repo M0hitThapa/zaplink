@@ -2,14 +2,43 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken"
 import express from "express"
 
+import { UserModel } from "./db";
+
+
+
 
 const app = express()
 
-app.post("/api/v1/signup", (req,res) => {
+app.use(express.json())
+
+app.post("/api/v1/signup", async (req,res) => {
+const username = req.body.username;
+const password = req.body.password;
+
+await UserModel.create({
+    username:username,
+    password:password
+})
+
+res.json({
+    message:"User Created"
+})
 
 })
 
-app.post("/api/v1/signin", (req,res) => {
+app.post("/api/v1/signin", async (req,res) => {
+const username = req.body.username;
+const password = req.body.password;
+
+await UserModel.findOne({
+    username:username,
+    password:password
+})
+
+res.json({
+    message:"User Found"
+})
+
 
 })
 
@@ -23,5 +52,12 @@ app.get("/api/v1/content", (req, res) => {
 })
 
 app.delete("/api/v1/content", (req, res) => {
-    
+
 })
+
+app.post("/api/v1/brain/share", (req, res) => {
+
+})
+
+
+app.listen(3000)
