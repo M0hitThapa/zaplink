@@ -6,7 +6,7 @@ import { UserModel } from "./db";
 
 
 
-
+const JWT_PASSWORD = "1229rrf932fg9328f"
 const app = express()
 
 app.use(express.json())
@@ -15,7 +15,8 @@ app.post("/api/v1/signup", async (req,res) => {
 const username = req.body.username;
 const password = req.body.password;
 
-await UserModel.create({
+try {
+    await UserModel.create({
     username:username,
     password:password
 })
@@ -23,6 +24,11 @@ await UserModel.create({
 res.json({
     message:"User Created"
 })
+} catch (e) {
+    res.status(411).json({
+        message:"User already exists"
+    })
+}
 
 })
 
@@ -30,15 +36,24 @@ app.post("/api/v1/signin", async (req,res) => {
 const username = req.body.username;
 const password = req.body.password;
 
-await UserModel.findOne({
-    username:username,
-    password:password
+const existingUser = await UserModel.findOne({
+    username,
+    password
 })
 
-res.json({
-    message:"User Found"
-})
+if(existingUser) {
+    const token = jwt.sign({
+        id:existingUser._id
+    }, JWT_PASSWORD)
 
+    res.json({
+        token
+    })
+} else {
+    res.status(403).json({
+        message:"Incorrect credentials"
+    })
+}
 
 })
 
