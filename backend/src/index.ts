@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken"
 import express from "express"
 
-import { UserModel } from "./db";
+import { ContentModel, UserModel } from "./db";
+import { userMiddleware } from "./middleware";
 
 
 
@@ -57,7 +58,22 @@ if(existingUser) {
 
 })
 
-app.post("/api/v1/content", (req, res) => {
+app.post("/api/v1/content", userMiddleware, (req, res) => {
+    const link = req.body.link;
+    const type = req.body.type;
+
+    ContentModel.create({
+        link,
+        type,
+        //@ts-ignore
+        userId:req.userId,
+        tags: []
+    })
+
+     res.json({
+        message:"Content added"
+    })
+
 
 })
 
