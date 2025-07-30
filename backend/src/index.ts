@@ -79,6 +79,11 @@ app.post("/api/v1/content", userMiddleware, (req, res) => {
 
 
 app.get("/api/v1/content", (req, res) => {
+    // @ts-ignore
+    const userId = req.userId;
+    const content = ContentModel.find({
+        userId:userId
+    })
 
 })
 
