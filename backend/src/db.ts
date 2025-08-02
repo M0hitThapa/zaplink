@@ -1,7 +1,7 @@
 import mongoose, {model, mongo, Schema} from "mongoose"
 
 
-mongoose.connect("mongodb+srv://thapamohit2058:SlWIMRGewwKpC0a8@cluster0.gyz6xuw.mongodb.net/secondbrain")
+mongoose.connect("mongodb+srv://mohitthapa2058:tC9zBOCeQQN6CfxM@cluster0.xjgkv4b.mongodb.net/secondbrain")
 const UserSchema = new Schema({
     username:{type:String, unique:true},
     password:String
@@ -17,5 +17,12 @@ const ContentSchema = new Schema({
     userId:{type:mongoose.Types.ObjectId, ref:'User',
          required:true}
 })
+
+const LinkSchema = new Schema({
+    hash:String,
+    userId:{type:mongoose.Types.ObjectId, ref:'User', required:true, unique:true}
+})
+
+export const LinkModel = model("Links", LinkSchema)
 
 export const ContentModel = model("Content", ContentSchema)
