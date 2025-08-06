@@ -1,5 +1,6 @@
 
 import './App.css'
+import { Button } from './components/Button'
 
 function App() {
 
@@ -7,7 +8,8 @@ function App() {
   return (
     <>
       <div>
-        Hello
+        <Button variant='primary' text="Add content" />
+        <Button variant='secondary' text="Add content" />
       </div>
     </>
   )
