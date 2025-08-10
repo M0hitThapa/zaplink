@@ -1,6 +1,7 @@
 
 import './App.css'
 import { Button } from './components/Button'
+import { Card } from './components/Card'
 import { PlusIcon } from './icons/PlusIcons'
 import { ShareIcon } from './icons/ShareIcon'
 
@@ -8,12 +9,18 @@ function App() {
 
 
   return (
-    <>
-      <div>
-        <Button variant='primary' text="Add content" startIcon={<PlusIcon />}/>
+  
+      <div className='mt-5'>
+        <div className='flex justify-end gap-2 items-center p-2'>
+          <Button variant='primary' text="Add content" startIcon={<PlusIcon />}/>
         <Button variant='secondary' text="Share Brain" startIcon={<ShareIcon />}/>
+        </div>
+       <div className='flex gap-5 items-center '>
+         <Card type='youtube' title='this is a title' link='https://www.youtube.com/watch?v=IC5Y1EE-aj4' />
+        <Card type='twitter' title='this is a twitter title' link='https://x.com/mannupaaji/status/1954475202722648210' />
+       </div>
       </div>
-    </>
+   
   )
 }
 
