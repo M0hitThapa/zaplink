@@ -9,7 +9,7 @@ interface ButtonProps {
 
 
 export const Card = ({link, title, type}: ButtonProps) => {
-    return <div className="border p-4 border-slate-100/50 min-h-80 min-w-56 shadow-md items-center ">
+    return <div className="border p-4 border-slate-200 rounded-2xl min-h-80 min-w-56 h-fit shadow-md items-center ml-4 bg-white ">
         <div className="flex justify-between">
             <div className="flex gap-2 items-center">
                 <ShareIcon />
