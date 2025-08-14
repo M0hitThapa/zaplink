@@ -4,7 +4,7 @@ import { Button } from "./Button"
 export const CreateContextModal = ({open, onClose}) => {
     return (
         <div>
-            {open && <div className="h-screen w-screen fixed bg-gray-500 opacity-60 flex items-center justify-center z-[100]">
+            {open && <div className="h-screen w-screen fixed bg-gray-500/60 flex items-center justify-center z-[100]">
             <div className=" bg-white px-4 py-2 ">
                 <div className="flex justify-end">
                     <div onClick={onClose} className="cursor-pointer">
