@@ -1,5 +1,6 @@
 import { CloseIcon } from "../icons/closeIcon"
 import { Button } from "./Button"
+import { Input } from "./Input"
 
 export const CreateContextModal = ({open, onClose}) => {
     return (
@@ -27,9 +28,3 @@ export const CreateContextModal = ({open, onClose}) => {
     )
 }
 
-
-function Input({onChange,placeholder}: {onChange:() => void}) {
-    return (
-        <input placeholder={placeholder} type="text" className="px-8 py-3 border-2 border-slate-300 shadow-md" />
-    )
-}
