@@ -5,11 +5,13 @@ import express from "express"
 import { ContentModel, LinkModel, UserModel } from "./db";
 import { userMiddleware } from "./middleware";
 import { random } from "./utils";
+import cors from "cors"
 
 
 
 const JWT_PASSWORD = "1229rrf932fg9328f"
 const app = express()
+app.use(cors())
 
 app.use(express.json())
 
