@@ -7,9 +7,11 @@ import { CreateContextModal } from '../components/CreateContentModal'
 import { PlusIcon } from '../icons/PlusIcons'
 import { ShareIcon } from '../icons/ShareIcon'
 import { Sidebar } from '../components/Sidebar'
+import { useContent } from '../hooks/useContent'
 
 function Dashboard() {
   const [openModal, setOpenModal] = useState(false)
+  const contents = useContent()
 
 
   return (
@@ -28,8 +30,9 @@ function Dashboard() {
         <Button variant='secondary' text="Share Brain" startIcon={<ShareIcon />}/>
         </div>
        <div className='flex  items-center '>
-         <Card type='youtube' title='this is a title' link='https://www.youtube.com/watch?v=IC5Y1EE-aj4' />
-        <Card type='twitter' title='this is a twitter title' link='https://x.com/mannupaaji/status/1954475202722648210' />
+        {contents.map(({link, type,title}) =>  <Card type={type} title={title} link={link} /> )}
+        
+       
        </div>
       </div>
     </div>
