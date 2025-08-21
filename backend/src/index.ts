@@ -9,7 +9,7 @@ import cors from "cors"
 
 
 
-const JWT_PASSWORD = "1229rrf932fg9328f"
+const JWT_SECRET = "1229rrf932fg9328f"
 const app = express()
 app.use(cors())
 
@@ -48,7 +48,7 @@ const existingUser = await UserModel.findOne({
 if(existingUser) {
     const token = jwt.sign({
         id:existingUser._id
-    }, JWT_PASSWORD)
+    }, JWT_SECRET)
 
     res.json({
         token
@@ -68,7 +68,8 @@ app.post("/api/v1/content", userMiddleware, (req, res) => {
     ContentModel.create({
         link,
         type,
-        //@ts-ignore
+        title:req.body.title,
+         //@ts-ignore
         userId:req.userId,
         tags: []
     })
